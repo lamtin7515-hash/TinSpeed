@@ -2,11 +2,14 @@
 
 body {
     background: #060812; font-family: 'Rajdhani', sans-serif; color: #fff;
-    overflow: hidden; display: flex; justify-content: center; align-items: center; min-height: 100vh;
+    overflow: hidden; display: flex; justify-content: center; align-items: center; 
+    /* ĐÃ SỬA LỖI BỊ CẮT XÉN: Dùng 100dvh (Dynamic Viewport Height) để không bị thanh công cụ điện thoại đè lên */
+    height: 100dvh; 
+    width: 100vw;
 }
 
 #game-container {
-    position: relative; width: 100vw; height: 100vh; overflow: hidden; background: #060812;
+    position: relative; width: 100%; height: 100%; overflow: hidden; background: #060812;
 }
 
 #hud-layer {
@@ -42,9 +45,8 @@ body {
 }
 #minimapCanvas { display: block; border-radius: 50%; width: 140px; height: 140px; }
 
-/* CỤM TỐC ĐỘ VÀ NITRO BỐ TRÍ Ở GIỮA DƯỚI MÀN HÌNH */
 .hud-bottom-center {
-    position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+    position: absolute; bottom: 35px; left: 50%; transform: translateX(-50%);
     display: flex; flex-direction: column; align-items: center; gap: 8px;
 }
 
@@ -61,12 +63,11 @@ body {
 .nitro-bar-outer { width: 100%; height: 8px; background: rgba(34, 34, 34, 0.8); border-radius: 4px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.2); }
 .nitro-bar-fill { width: 100%; height: 100%; background: linear-gradient(90deg, #ff4500, #ffbb00); box-shadow: 0 0 10px #ff7700; transition: width 0.08s linear; }
 
-.hud-bottom-left { position: absolute; bottom: 150px; left: 20px; font-family: 'Rajdhani', sans-serif; }
+.hud-bottom-left { position: absolute; bottom: 130px; left: 20px; font-family: 'Rajdhani', sans-serif; }
 .controls-guide { background: rgba(10, 15, 25, 0.8); border: 1px solid rgba(255, 255, 255, 0.15); padding: 8px 14px; border-radius: 6px; font-size: 13px; color: #cfd8dc; line-height: 1.5; }
 
-/* BỘ NÚT BẤM ẢO TRÊN MÀN HÌNH */
 .touch-controls {
-    position: absolute; bottom: 30px; left: 0; width: 100%;
+    position: absolute; bottom: 35px; left: 0; width: 100%;
     display: flex; justify-content: space-between; align-items: flex-end;
     padding: 0 40px; pointer-events: none; z-index: 20;
 }
@@ -87,7 +88,6 @@ body {
 }
 .touch-btn:active { background: rgba(0, 238, 255, 0.4); box-shadow: 0 0 30px rgba(0, 238, 255, 0.8); transform: scale(0.9); }
 
-/* Vị trí nút Drift bên phải */
 .drift-btn { 
     position: absolute; bottom: 0; right: 0;
     border-color: #ff007f; color: #ff007f; box-shadow: 0 0 15px rgba(255, 0, 127, 0.3); 
@@ -95,7 +95,6 @@ body {
 }
 .drift-btn:active { background: rgba(255, 0, 127, 0.4); box-shadow: 0 0 30px rgba(255, 0, 127, 0.8); }
 
-/* Nút Nitro thu nhỏ, đưa lên trên và dịch sang trái */
 .nitro-btn { 
     position: absolute; bottom: 85px; right: 55px;
     border-color: #ffaa00; color: #ffaa00; box-shadow: 0 0 15px rgba(255, 170, 0, 0.3); 
@@ -103,7 +102,6 @@ body {
 }
 .nitro-btn:active { background: rgba(255, 170, 0, 0.4); box-shadow: 0 0 30px rgba(255, 170, 0, 0.8); }
 
-/* OVERLAYS MENU */
 .overlay-screen { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.15); backdrop-filter: blur(2px); z-index: 10; display: none; justify-content: center; align-items: center; pointer-events: auto; }
 .overlay-screen.active { display: flex; }
 .screen-content { background: linear-gradient(135deg, rgba(15, 20, 35, 0.95), rgba(5, 10, 20, 0.95)); border: 2px solid rgba(0, 238, 255, 0.6); border-radius: 16px; padding: 40px 60px; text-align: center; box-shadow: 0 0 50px rgba(0, 238, 255, 0.35); max-width: 680px; width: 90%; }
@@ -125,3 +123,27 @@ body {
 .finish-title { font-family: 'Orbitron', sans-serif; font-size: 38px; color: #ffd700; text-shadow: 0 0 20px rgba(255, 215, 0, 0.8); margin-bottom: 20px; }
 .result-stats { background: rgba(15, 20, 35, 0.8); border-radius: 8px; padding: 20px; margin-bottom: 25px; border: 1px solid rgba(255, 255, 255, 0.1); }
 .result-row { display: flex; justify-content: space-between; font-size: 18px; margin: 10px 0; }
+
+/* TỰ ĐỘNG THU NHỎ & ĐẨY GIAO DIỆN LÊN TRÊN ĐIỆN THOẠI */
+@media (max-width: 900px) {
+    .touch-controls { padding: 0 20px; bottom: 35px; } /* Đẩy toàn bộ phím lên khỏi mép */
+    .touch-btn { width: 55px; height: 55px; font-size: 22px; }
+    .touch-left-panel { gap: 10px; }
+    
+    .touch-right-panel { width: 140px; height: 140px; }
+    .drift-btn { width: 70px; height: 70px; font-size: 14px; }
+    .nitro-btn { width: 48px; height: 48px; font-size: 12px; bottom: 75px; right: 45px; }
+    
+    .hud-bottom-center { bottom: 35px; gap: 6px; }
+    .speedometer { padding: 4px 12px; gap: 4px; border-radius: 6px; }
+    .speed-value { font-size: 26px; min-width: 50px; }
+    .speed-unit { font-size: 11px; }
+    .nitro-wrapper { width: 130px; }
+    .nitro-bar-outer { height: 6px; }
+    
+    .hud-bottom-left { bottom: 90px; }
+    #minimapCanvas { width: 110px; height: 110px; }
+    .badge { padding: 4px 10px; margin-bottom: 6px; }
+    .badge .label { font-size: 11px; }
+    .badge .value { font-size: 14px; }
+}
