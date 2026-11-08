@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ZingSpeed Mobile - 3D Web Edition</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="game-container">
+        
+        <div id="hud-layer">
+            <div id="offRoadAlert" class="off-road-alert">CẢNH BÁO: TÔNG TƯỜNG!</div>
+
+            <div class="hud-top-left">
+                <div class="badge lap-badge">
+                    <span class="label">LAP</span>
+                    <span id="lapDisplay" class="value">1 / 3</span>
+                </div>
+                <div class="badge time-badge">
+                    <span class="label">TIME</span>
+                    <span id="timeDisplay" class="value">00:00.00</span>
+                </div>
+                <div class="badge rank-badge">
+                    <span class="label">RANK</span>
+                    <span id="rankDisplay" class="value highlight">1st</span>
+                </div>
+            </div>
+
+            <div class="hud-top-right">
+                <div class="minimap-container">
+                    <canvas id="minimapCanvas" width="160" height="160"></canvas>
+                </div>
+            </div>
+
+            <!-- CỤM TỐC ĐỘ VÀ NITRO Ở GIỮA DƯỚI MÀN HÌNH -->
+            <div class="hud-bottom-center">
+                <div class="speedometer">
+                    <div class="speed-value" id="speedDisplay">0</div>
+                    <div class="speed-unit">KM/H</div>
+                </div>
+                <div class="nitro-wrapper">
+                    <div class="nitro-bar-outer">
+                        <div id="nitroBar" class="nitro-bar-fill"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hud-bottom-left">
+                <div class="controls-guide">
+                    <div><b>R</b> Đặt lại vị trí xe</div>
+                </div>
+            </div>
+
+            <!-- BỘ NÚT BẤM ẢO TRÊN MÀN HÌNH -->
+            <div class="touch-controls">
+                <div class="touch-left-panel">
+                    <button id="btnLeft" class="touch-btn">◀</button>
+                    <button id="btnRight" class="touch-btn">▶</button>
+                </div>
+                <div class="touch-right-panel">
+                    <button id="btnDrift" class="touch-btn drift-btn">DRIFT</button>
+                    <button id="btnNitro" class="touch-btn nitro-btn">N2O🗲</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Màn hình Menu -->
+        <div id="startScreen" class="overlay-screen active">
+            <div class="screen-content">
+                <h1 class="game-logo">ZING SPEED <span>3D</span></h1>
+                <p class="subtitle">PHIÊN BẢN ĐUA XE 3D GÓC NHÌN THỨ BA</p>
+                <div class="car-selection">
+                    <h3>CHỌN CHIẾN MÃ CỦA BẠN</h3>
+                    <div class="car-options">
+                        <div class="car-card selected" data-car="shadow">
+                            <div class="car-preview shadow-car"></div>
+                            <span class="car-name">Bóng Đêm (Shadow)</span>
+                            <div class="stats">Tốc độ: ★★★★☆ | Bám cua: ★★★★★</div>
+                        </div>
+                        <div class="car-card" data-car="thunder">
+                            <div class="car-preview thunder-car"></div>
+                            <span class="car-name">Lôi Thần (Thunder)</span>
+                            <div class="stats">Tốc độ: ★★★☆☆ | Gia tốc: ★★★★★</div>
+                        </div>
+                    </div>
+                </div>
+                <button id="btnStartGame" class="neon-btn">XUẤT PHÁT NGAY</button>
+            </div>
+        </div>
+
+        <div id="gameOverScreen" class="overlay-screen">
+            <div class="screen-content">
+                <h2 class="finish-title">VỀ ĐÍCH HOÀN TẤT!</h2>
+                <div class="result-stats">
+                    <div class="result-row"><span>Thời gian tổng:</span> <b id="finalTime">00:00.00</b></div>
+                    <div class="result-row"><span>Tốc độ tối đa:</span> <b id="topSpeed">0 KM/H</b></div>
+                    <div class="result-row"><span>Xếp hạng:</span> <b class="highlight">HẠNG NHẤT</b></div>
+                </div>
+                <button id="btnRestartGame" class="neon-btn">ĐUA LẠI</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="js/audio.js"></script>
+    <script src="js/track.js"></script>
+    <script src="js/car.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>
